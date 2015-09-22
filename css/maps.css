@@ -1,0 +1,4 @@
+/* Set width of Places Autocomplete Container to to fit the content */
+.pac-container, .pac-item {
+    width: inherit !important;
+}

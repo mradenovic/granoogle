@@ -1,0 +1,29 @@
+{
+  "name": "Granoogle : Granot + Google",
+  "version": "0.0.2",
+  "manifest_version": 2,
+  "description": "This extension integrates Granot Moving Software with (some) Google services",
+  "homepage_url": "http://praqtiq.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*mpest~entrywc*",
+        "http://*/*mpest~entrywc*"
+      ],
+      "css": ["css/maps.css"],
+      "js": [
+        "load_maps_api.js"
+      ]
+    }  ],
+  "web_accessible_resources": [
+    "maps_api.js"
+  ]
+}
