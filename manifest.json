@@ -22,7 +22,18 @@
       "js": [
         "load_maps_api.js"
       ]
-    }  ],
+    },
+    {
+      "matches": [
+        "https://*/*mpcharge~chargeswc*",
+        "http://*/*mpcharge~chargeswc*"
+      ],
+      "css": ["css/gmail.css"],
+      "js": [
+        "gmail_integration.js"
+      ]
+    }
+  ],
   "web_accessible_resources": [
     "maps_api.js"
   ]
