@@ -7,7 +7,7 @@ function addGmailSearch() {
   var email = emailAnchor.textContent;
 
   var gmailAnchor = document.createElement('a');
-  gmailAnchor.innerHTML = ' <i class="material-icons md-12">search</i>in Gmail';
+  gmailAnchor.innerHTML = ' <i class="material-icons md-12">search</i> in Gmail';
   gmailAnchor.href = 'https://mail.google.com/mail/u/0/#search/' + email;
   gmailAnchor.target = '_search_in_gmail'
 

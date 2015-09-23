@@ -7,5 +7,4 @@ Granoogle is a collection of content script that will add following functionalit
     * Search communication history in Gmail
   * Work in progress
     * Send an email with ojb details to crew members with Gmail
-    * Search communication history in Gmail
     * Show the route in Google maps starting with the parking lot and including extra stops
