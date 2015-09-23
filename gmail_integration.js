@@ -30,8 +30,12 @@ function appendStyle() {
  *
  */
 function init() {
-  addGmailSearch();
-  appendStyle();
+  chrome.storage.sync.get('gmailSearch', function(items) {
+    if (items.gmailSearch) {
+      addGmailSearch();
+      appendStyle();
+    }
+  });
 }
 
 init();

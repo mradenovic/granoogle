@@ -9,8 +9,10 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "options_page": "options.html",
   "permissions": [
-    "https://*/*"
+    "https://*/*",
+    "storage"
   ],
   "content_scripts": [
     {

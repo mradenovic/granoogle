@@ -31,4 +31,16 @@ function initMapsAPI(js) {
   document.body.appendChild(script);
 }
 
-loadScriptFromFile();
+function init() {
+  // Load script if option si checked
+  chrome.storage.sync.get('mapsAutocomplete', function(items) {
+    console.log('mapsAutocomplete: ',items.mapsAutocomplete)
+    if (items.mapsAutocomplete) {
+      loadScriptFromFile();
+    }
+  });
+}
+
+init();
+
+
