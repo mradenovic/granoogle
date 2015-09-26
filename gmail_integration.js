@@ -15,6 +15,26 @@ function addGmailSearch() {
 }
 
 /**
+ * Appends "Search in Gmail" link to email address.
+ *
+ */
+function addDirections() {
+  $('[value="Extra Stop/Notes"]')
+    .parent().after($('<td>')
+      .attr('width','10%')
+      .attr('align','center')
+      .append($('<a>')
+        .attr('href','https://google.com/maps/dir/')
+        .attr('target','_directions')
+        .append($('<i>')
+          .text('directions')
+          .addClass('material-icons md-18')
+      )
+      )
+    );
+}
+
+/**
  * Appends style necessary for use of google material-icons font.
  *
  */
@@ -32,8 +52,9 @@ function appendStyle() {
 function init() {
   chrome.storage.sync.get('gmailSearch', function(items) {
     if (items.gmailSearch) {
-      addGmailSearch();
+      addDirections();
       appendStyle();
+      addGmailSearch();
     }
   });
 }
