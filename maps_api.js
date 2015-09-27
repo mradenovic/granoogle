@@ -74,7 +74,7 @@ function initAutocomplete() {
   if (inputPrefix == 'd_') { place = destAutocomplete.getPlace() };
   var prefix = inputPrefix;
 
-  document.getElementById(prefix + 'name').value = place.name;
+  document.getElementById(prefix + 'name').value = '[' + prefix[0] + '] ' + place.name;
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
