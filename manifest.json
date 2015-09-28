@@ -1,6 +1,6 @@
 {
   "name": "Granoogle : Granot + Google",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "This extension integrates Granot Moving Software with (some) Google services",
   "homepage_url": "http://praqtiq.com",
