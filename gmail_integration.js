@@ -18,13 +18,13 @@ function addGmailSearch() {
  * Appends "Search in Gmail" link to email address.
  *
  */
-function addDirections() {
+function addDirections(parkinglotAddress) {
   $('[value="Extra Stop/Notes"]')
     .parent().after($('<td>')
       .attr('width','10%')
       .attr('align','center')
       .append($('<a>')
-        .attr('href','https://google.com/maps/dir/')
+        .attr('href',getDirectionsLink(parkinglotAddress))
         .attr('target','_directions')
         .append($('<i>')
           .text('directions')
@@ -32,6 +32,29 @@ function addDirections() {
       )
       )
     );
+}
+
+function getDirectionsLink(parkinglotAddress) {
+  var mapsLink = 'https://google.com/maps/dir/';
+  if (parkinglotAddress != '') {
+    mapsLink += parkinglotAddress + '/';
+  }
+  origin = $('.fromto:contains([o])').text().replace(/\[.\] /,'')
+         + $('.fromto[width="63%"]').text() + ' '
+         + $('.fromto[width="16%"]').text() + ' '
+         + $('.fromto[width="21%"]').text() + '/';
+  if (origin != '') {
+    mapsLink += origin;
+  }
+  destination = $('.fromto:contains([d])').text().replace(/\[.\] /,'')
+              + $('.fromto[width="60%"]').text() + ' '
+              + $('.fromto[width="15%"]').text() + ' '
+              + $('.fromto[width="25%"]').text() + '/';
+  if (destination != '') {
+    mapsLink += destination;
+  }
+  console.log(mapsLink.replace(' ', '+'));
+  return mapsLink;
 }
 
 /**
@@ -50,11 +73,16 @@ function appendStyle() {
  *
  */
 function init() {
-  chrome.storage.sync.get('gmailSearch', function(items) {
+  chrome.storage.sync.get({
+    mapsAutocomplete: 'true',
+    mapsDirections: 'true',
+    mapsParkinglotAddress: '',
+    gmailSearch: 'true',
+  }, function(items) {
     if (items.gmailSearch) {
-      addDirections();
       appendStyle();
       addGmailSearch();
+      addDirections(items.mapsParkinglotAddress);
     }
   });
 }
