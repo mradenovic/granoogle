@@ -35,9 +35,21 @@
         "jquery-2.1.4.min.js",
         "charges.js"
       ]
+    },
+     {
+      "matches": [
+        "https://*/*mpest~extstopwc*",
+        "http://*/*mpest~extstopwc*"
+      ],
+      "css": ["css/maps.css"],
+      "js": [
+        "jquery-2.1.4.min.js",
+        "extra_stop.js"
+      ]
     }
-  ],
+ ],
   "web_accessible_resources": [
-    "maps_api.js"
+    "maps_api.js",
+    "extra_stop_maps.js"
   ]
 }
