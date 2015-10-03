@@ -7,6 +7,6 @@ Granoogle is a collection of content scripts that will add following functionali
     * Search communication history in Gmail
     * Show the route in Google maps starting with the parking lot address
     * Address autocomplete on Extra Stop page
-  * Work in progress
     * Include extra stops in route
+  * Work in progress
     * Send an email with job details to crew members with Gmail
