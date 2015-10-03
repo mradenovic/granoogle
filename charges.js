@@ -1,3 +1,6 @@
+var parkinglotAddress;
+var extraStops;
+
 /**
  * Appends "Search in Gmail" link to email address.
  *
@@ -18,14 +21,14 @@ function addGmailSearch() {
  * Appends "Search in Gmail" link to email address.
  *
  */
-function addDirections(parkinglotAddress) {
+function addDirections() {
   $('[value="Extra Stop/Notes"]')
     .parent().after($('<td>')
       .attr('width','10%')
       .attr('align','center')
       .append($('<a>')
-        .attr('href',getDirectionsLink(parkinglotAddress))
-        .attr('target','_directions')
+        .attr('href','#')
+        .click(getDirections)
         .append($('<i>')
           .text('directions')
           .addClass('material-icons md-18')
@@ -34,8 +37,10 @@ function addDirections(parkinglotAddress) {
     );
 }
 
-function getDirectionsLink(parkinglotAddress) {
+function getDirectionsLink() {
   var mapsLink = 'https://google.com/maps/dir/';
+
+  // add parkinglot address
   if (parkinglotAddress != '') {
     mapsLink += parkinglotAddress + '/';
   }
@@ -46,6 +51,16 @@ function getDirectionsLink(parkinglotAddress) {
   if (origin != '') {
     mapsLink += origin;
   }
+
+  //Add exra stops
+  if (extraStops) {
+    for (i in extraStops) {
+      var bracket = /[\[|\]]/g;
+      mapsLink += extraStops[i].replace(bracket, '') + '/';
+    }
+  }
+
+  // Add destination
   destination = $('.fromto:contains([d])').text().replace(/\[.\] /,'')
               + $('.fromto[width="60%"]').text() + ' '
               + $('.fromto[width="15%"]').text() + ' '
@@ -53,8 +68,23 @@ function getDirectionsLink(parkinglotAddress) {
   if (destination != '') {
     mapsLink += destination;
   }
-  console.log(mapsLink.replace(' ', '+'));
-  return mapsLink;
+
+  // Open link
+  window.open(mapsLink, '_directions');
+}
+
+function getDirections() {
+  var extraStopURL = document.URL.replace('mpcharge~chargeswc', 'mpest~extstopwc');
+  extraStopWindow = window.open(extraStopURL,'_directions'); //, 'toolbar=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no,width=550,height=550');
+  var int = setInterval(wait, 100);
+  function wait() {
+    if (extraStopWindow.getExtraStops) {
+      clearInterval(int);
+      extraStops = extraStopWindow.getExtraStops();
+      extraStopWindow.close();
+      getDirectionsLink();
+    }
+  }
 }
 
 /**
@@ -80,9 +110,10 @@ function init() {
     gmailSearch: 'true',
   }, function(items) {
     if (items.gmailSearch) {
+      parkinglotAddress = items.mapsParkinglotAddress
       appendStyle();
       addGmailSearch();
-      addDirections(items.mapsParkinglotAddress);
+      addDirections();
     }
   });
 }
