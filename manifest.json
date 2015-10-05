@@ -1,8 +1,8 @@
 {
-  "name": "Granoogle : Granot + Google",
+  "name": "Granottifier",
   "version": "0.0.4",
   "manifest_version": 2,
-  "description": "This extension integrates Granot Moving Software with (some) Google services",
+  "description": "This extension prettifies Granot Moving Software by integrating (some) Google services",
   "homepage_url": "https://github.com/mradenovic/granoogle",
   "icons": {
     "16": "icons/mover16.png",
