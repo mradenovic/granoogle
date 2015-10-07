@@ -22,7 +22,7 @@
       ],
       "css": ["css/maps.css"],
       "js": [
-        "load_maps_api.js"
+        "entry_form.js"
       ]
     },
     {
@@ -49,7 +49,7 @@
     }
  ],
   "web_accessible_resources": [
-    "maps_api.js",
+    "entry_form_maps.js",
     "extra_stop_maps.js"
   ]
 }

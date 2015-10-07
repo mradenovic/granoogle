@@ -3,7 +3,7 @@
  *
  */
 function loadScriptFromFile() {
-  var fileURL = chrome.extension.getURL('maps_api.js');
+  var fileURL = chrome.extension.getURL('entry_form_maps.js');
   var request = new XMLHttpRequest();
   request.open('GET', fileURL);
   request.onloadend = function() {
