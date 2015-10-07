@@ -1,12 +1,9 @@
-# Granoogle
-Google Chrome extension that integrates Granot Moving Software with (some) Google services
+# Granottifier
+Google Chrome extension that prettifies Granot Moving Software by integrating (some) Google services
 
-Granoogle is a collection of content scripts that will add following functionality to Granot Moving Software:
-  * Working  
-    * Address autocomplete on Entry Form.
-    * Search communication history in Gmail
-    * Show the route in Google maps starting with the parking lot address
-    * Address autocomplete on Extra Stop page
-    * Include extra stops in route
-  * Work in progress
-    * Send an email with job details to crew members with Gmail
+Granottifier is a collection of content scripts that adds following functionality to Granot Moving Software:
+  * Address autocomplete -- *Entry Form* page
+  * Search communication history in Gmail -- *Charges* page
+  * Include parking lot address in directions-- *Charges* page
+  * Address autocomplete -- *Extra Stop* page
+  * Include extra stops in directons -- *Charges* page
