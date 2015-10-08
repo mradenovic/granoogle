@@ -1,3 +1,6 @@
+// Do not use markers in address field
+var useMarker = false;
+
 var parkinglotAddress;
 var extraStops;
 
@@ -39,12 +42,23 @@ function addDirections() {
 
 function getDirectionsLink() {
   var mapsLink = 'https://google.com/maps/dir/';
+  var orgin, destination;
 
   // add parkinglot address
   if (parkinglotAddress != '') {
     mapsLink += parkinglotAddress + '/';
   }
-  origin = $('.fromto:contains([o])').text().replace(/\[.\] /,'')
+
+  // Add origin
+  if (useMarker) {
+    origin = $('.fromto:contains([o])').text().replace(/\[.\] /,'')
+  } else {
+    origin = $('td:not([height])[width="100%"][ colspan="3"][class!="FROMTO"]').parent().next().children()[0].textContent;
+    if ( !origin.match(/^\d/) ) {
+      origin = '';
+    }
+  }
+  origin +=
          + $('.fromto[width="63%"]').text() + ' '
          + $('.fromto[width="16%"]').text() + ' '
          + $('.fromto[width="21%"]').text() + '/';
@@ -61,7 +75,15 @@ function getDirectionsLink() {
   }
 
   // Add destination
-  destination = $('.fromto:contains([d])').text().replace(/\[.\] /,'')
+  if (useMarker) {
+    destination = $('.fromto:contains([d])').text().replace(/\[.\] /,'')
+  } else {
+    destination = $('td:not([height])[width="100%"][ colspan="3"][class!="FROMTO"]').parent().next().children()[1].textContent;
+    if ( !destination.match(/^\d/) ) {
+      destination = '';
+    }
+  }
+  destination +=
               + $('.fromto[width="60%"]').text() + ' '
               + $('.fromto[width="15%"]').text() + ' '
               + $('.fromto[width="25%"]').text() + '/';

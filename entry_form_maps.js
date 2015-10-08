@@ -1,3 +1,6 @@
+// Do not use markers in address field
+var useMarker = false;
+
 var originAutocomplete, destAutocomplete;
 var componentForm = {
   //street_number: 'short_name',
@@ -69,12 +72,16 @@ function initAutocomplete() {
  */
  function updateAddressFields(inputPrefix) {
   // Get the place details from the autocomplete object.
-  var place;
-  if (inputPrefix == 'o_') { place = originAutocomplete.getPlace() };
-  if (inputPrefix == 'd_') { place = destAutocomplete.getPlace() };
   var prefix = inputPrefix;
-
-  document.getElementById(prefix + 'name').value = '[' + prefix[0] + '] ' + place.name;
+  var name = '';
+  var place;
+  if (prefix == 'o_') { place = originAutocomplete.getPlace() };
+  if (prefix == 'd_') { place = destAutocomplete.getPlace() };
+  if (useMarker) {
+    name += '[' + prefix[0] + '] ';
+  }
+  name += place.name;
+  document.getElementById(prefix + 'name').value = name;
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
