@@ -1,4 +1,5 @@
 // Do not use markers in address field
+// TODO move useMarker to options window and remove hardcoded one
 var useMarker = false;
 
 var parkinglotAddress;
@@ -58,7 +59,7 @@ function getDirectionsLink() {
       origin = '';
     }
   }
-  origin +=
+  origin += ', '
          + $('.fromto[width="63%"]').text() + ' '
          + $('.fromto[width="16%"]').text() + ' '
          + $('.fromto[width="21%"]').text() + '/';
@@ -83,7 +84,7 @@ function getDirectionsLink() {
       destination = '';
     }
   }
-  destination +=
+  destination += ', '
               + $('.fromto[width="60%"]').text() + ' '
               + $('.fromto[width="15%"]').text() + ' '
               + $('.fromto[width="25%"]').text() + '/';
