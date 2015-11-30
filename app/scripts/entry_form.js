@@ -6,7 +6,7 @@ function initEntryForm() {
   // Load entry_form_maps.js into script tag
   $('head')
     .append($('<script>')
-      .load(chrome.extension.getURL('entry_form_maps.js'), initMapsAPI())
+      .load(chrome.extension.getURL('scripts/entry_form_maps.js'), initMapsAPI())
     )
 }
 

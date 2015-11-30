@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Granottifier",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "This extension prettifies Granot Moving Software by integrating (some) Google services",
+    "description": "The description of the application"
+  }
+}

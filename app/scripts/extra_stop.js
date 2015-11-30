@@ -32,7 +32,7 @@ function initExtraStop() {
   // Load extra_stop.js into script tag
   $('head')
     .append($('<script>')
-      .load(chrome.extension.getURL('extra_stop_maps.js'), initMapsAPI())
+      .load(chrome.extension.getURL('scripts/extra_stop_maps.js'), initMapsAPI())
     )
 }
 
