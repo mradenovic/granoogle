@@ -103,6 +103,7 @@ function getDirections() {
   function wait() {
     if (extraStopWindow.getExtraStops) {
       clearInterval(int);
+      // TODO check if extra stops checkmark exist
       extraStops = extraStopWindow.getExtraStops();
       extraStopWindow.close();
       getDirectionsLink();
