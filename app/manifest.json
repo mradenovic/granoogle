@@ -34,7 +34,7 @@
       ],
       "css": ["styles/maps.css"],
       "js": [
-        "scripts/jquery-2.1.4.min.js",
+        "bower_components/jquery/dist/jquery.min.js",
         "scripts/entry_form.js"
       ]
     },
@@ -45,7 +45,7 @@
       ],
       "css": ["styles/gmail.css"],
       "js": [
-        "scripts/jquery-2.1.4.min.js",
+        "bower_components/jquery/dist/jquery.min.js",
         "scripts/charges.js"
       ]
     },
@@ -56,7 +56,7 @@
       ],
       "css": ["styles/maps.css"],
       "js": [
-        "scripts/jquery-2.1.4.min.js",
+        "bower_components/jquery/dist/jquery.min.js",
         "scripts/extra_stop.js"
       ]
     }
