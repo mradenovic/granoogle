@@ -127,12 +127,7 @@ function appendStyle() {
  *
  */
 function init() {
-  chrome.storage.sync.get({
-    mapsAutocomplete: 'true',
-    mapsDirections: 'true',
-    mapsParkinglotAddress: '',
-    gmailSearch: 'true',
-  }, function(items) {
+  chrome.storage.sync.get(null , function(items) {
     if (items.gmailSearch) {
       parkinglotAddress = items.mapsParkinglotAddress
       appendStyle();
