@@ -128,12 +128,14 @@ function appendStyle() {
  */
 function init() {
   chrome.storage.sync.get(null , function(items) {
-    if (items.gmailSearch) {
-      parkinglotAddress = items.mapsParkinglotAddress
+    if (items.emailSearch) {
       appendStyle();
       addGmailSearch();
+    };
+    if (items.mapsDirections) {
+      parkinglotAddress = items.mapsParkingLotAddress
       addDirections();
-    }
+    };  
   });
 }
 
