@@ -56,16 +56,11 @@ function getExtraStops() {
 }
 
 function init() {
-  initExtraStop();
-/*
-  // TODO Load script if option si checked
-  chrome.storage.sync.get('mapsAutocomplete', function(items) {
-    console.log('mapsAutocomplete: ',items.mapsAutocomplete)
+  chrome.storage.sync.get(null, function(items) {
     if (items.mapsAutocomplete) {
-      loadScriptFromFile();
+      initExtraStop();
     }
   });
-*/
 }
 
 init();
