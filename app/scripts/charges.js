@@ -70,7 +70,7 @@ function getDirectionsLink(options) {
   }
 
   //Add exra stops
-  if (extraStops) {
+  if (options.mapsExtraStops && extraStops) {
     for (i in extraStops) {
       var bracket = /[\[|\]]/g;
       mapsLink += extraStops[i].replace(bracket, '') + '/';
@@ -99,18 +99,27 @@ function getDirectionsLink(options) {
 }
 
 function getDirections(options) {
-  var extraStopURL = document.URL.replace('mpcharge~chargeswc', 'mpest~extstopwc');
-  extraStopWindow = window.open(extraStopURL,'_directions'); //, 'toolbar=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no,width=550,height=550');
-  var int = setInterval(wait, 100);
-  function wait() {
-    if (extraStopWindow.getExtraStops) {
-      clearInterval(int);
-      // TODO check if extra stops checkmark exist
-      extraStops = extraStopWindow.getExtraStops();
-      extraStopWindow.close();
-      getDirectionsLink(options);
-    }
+  // Load extra stops only if option is selected
+  // TODO check if extra stops checkmark exist
+  var hasExtraStop = false;
+  if (options.mapsExtraStops) {
+    hasExtraStop = true;
   }
+  if (options.mapsExtraStops && hasExtraStop) {
+    var extraStopURL = document.URL.replace('mpcharge~chargeswc', 'mpest~extstopwc');
+    extraStopWindow = window.open(extraStopURL,'_directions'); //, 'toolbar=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no,width=550,height=550');
+    var int = setInterval(wait, 100);
+    function wait() {
+      if (extraStopWindow.getExtraStops) {
+        clearInterval(int);
+        extraStops = extraStopWindow.getExtraStops();
+        extraStopWindow.close();
+        getDirectionsLink(options);
+      };
+    }
+  } else {
+    getDirectionsLink(options);  
+  };
 }
 
 /**
