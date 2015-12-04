@@ -6,11 +6,37 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
-  <body>
-    <h1>'Allo, 'Allo!</h1>
+  <body ng-app="optionsApp">
+    <h1>Granottifier Options</h1>
+    <div class="container" style="width: 768px">
+        <h4>Select options that you want to use</h4>
+        <form class="form-horizontal" ng-submit="saveOptions()" ng-controller="OptionsController">
+            <div class="form-group" ng-repeat="option in options">
+                <div class="col-xs-12 col-sm-4">
+                    <input type="{{option.type}}"   ng-disabled="{{option.disabled}}" class="{{option.class}}"  ng-model="option.value" 
+                       placeholder="{{option.placeholder}}" id="{{option.name}}">
+                    <label class="{{option.labelClass}}" for="{{option.name}}">{{option.label}}</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    {{option.description}}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class=" form-inlinecol-xs-12 col-sm-4">
+                    <input type="submit"    class="btn-info"  value="Save" id="submit">
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div>Status: <span id="status"></span></div>
+                    <div ng-repeat="log in logs track by $index">{{log}}</div>
+                </div>
+            </div>
+        </form>
+    </div>  
 
     <!-- build:js scripts/options-vendor.js -->
     <!-- bower:js -->
@@ -18,6 +44,7 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/options.js -->
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="scripts/options.js"></script>
     <!-- endbuild -->
   </body>
