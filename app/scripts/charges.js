@@ -25,14 +25,16 @@ function addGmailSearch() {
  * Appends "Search in Gmail" link to email address.
  *
  */
-function addDirections() {
+function addDirections(options) {
   $('[value="Extra Stop/Notes"]')
     .parent().after($('<td>')
       .attr('width','10%')
       .attr('align','center')
       .append($('<a>')
         .attr('href','#')
-        .click(getDirections)
+        .click(function() {
+          getDirections(options)
+        })
         .append($('<i>')
           .text('directions')
           .addClass('material-icons md-18')
@@ -41,12 +43,12 @@ function addDirections() {
     );
 }
 
-function getDirectionsLink() {
+function getDirectionsLink(options) {
   var mapsLink = 'https://google.com/maps/dir/';
   var orgin, destination;
 
   // add parkinglot address
-  if (parkinglotAddress != '') {
+  if (options.mapsParkingLotAddress != '' && options.mapsParkingLot) {
     mapsLink += parkinglotAddress + '/';
   }
 
@@ -96,7 +98,7 @@ function getDirectionsLink() {
   window.open(mapsLink, '_directions');
 }
 
-function getDirections() {
+function getDirections(options) {
   var extraStopURL = document.URL.replace('mpcharge~chargeswc', 'mpest~extstopwc');
   extraStopWindow = window.open(extraStopURL,'_directions'); //, 'toolbar=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no,width=550,height=550');
   var int = setInterval(wait, 100);
@@ -106,7 +108,7 @@ function getDirections() {
       // TODO check if extra stops checkmark exist
       extraStops = extraStopWindow.getExtraStops();
       extraStopWindow.close();
-      getDirectionsLink();
+      getDirectionsLink(options);
     }
   }
 }
@@ -134,7 +136,7 @@ function init() {
     };
     if (items.mapsDirections) {
       parkinglotAddress = items.mapsParkingLotAddress
-      addDirections();
+      addDirections(items);
     };  
   });
 }
