@@ -12,8 +12,8 @@
     <!-- endbuild -->
   </head>
   <body ng-app="optionsApp">
-    <h1>Granottifier Options</h1>
-    <div class="container" style="width: 768px">
+    <div class="container">
+        <h1>Granottifier Options</h1>
         <h4>Select options that you want to use</h4>
         <form class="form-horizontal" ng-submit="saveOptions()" ng-controller="OptionsController">
             <div class="form-group" ng-repeat="option in options">
@@ -30,7 +30,7 @@
                 <div class=" form-inlinecol-xs-12 col-sm-4">
                     <input type="submit"    class="btn-info"  value="Save" id="submit">
                 </div>
-                <div class="col-xs-12 col-sm-8">
+                <div class="col-xs-12 col-sm-8 text-muted  ">
                     <div>Status: <span id="status"></span></div>
                     <div ng-repeat="log in logs track by $index">{{log}}</div>
                 </div>
