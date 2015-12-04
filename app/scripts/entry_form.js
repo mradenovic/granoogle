@@ -26,7 +26,7 @@ function initMapsAPI() {
 
 function init() {
   // Load script if option si checked
-  chrome.storage.sync.get('mapsAutocomplete', function(items) {
+  chrome.storage.sync.get(null, function(items) {
     console.log('mapsAutocomplete: ',items.mapsAutocomplete)
     if (items.mapsAutocomplete) {
       initEntryForm();
