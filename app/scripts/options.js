@@ -10,7 +10,7 @@ angular.module('optionsApp', [])
                 type: 'checkbox',
                 value: true,
                 label: 'Address autocomplete',
-                description: 'Add autocomplete to address fields',
+                description: 'Add autocomplete to address fields. It will also add a text field in the Extra Stop page.',
                 disabled: false
         },
             {
@@ -18,7 +18,7 @@ angular.module('optionsApp', [])
                 type: 'checkbox',
                 value: true,
                 label: 'Directions',
-                description: 'Add directions button next to the Extra stop button. Directions can include parking lot and extra stops',
+                description: 'Add a Directions button in the Charges page. Directions can include a parking lot address and extra stops.',
                 disabled: false
         },
             {
@@ -26,7 +26,7 @@ angular.module('optionsApp', [])
                 type: 'checkbox',
                 value: true,
                 label: 'Parking lot',
-                description: 'Add Parkin Lot address to the directions',
+                description: 'Include the parking lot address as a starting point in directions.',
                 disabled: '!(options[1].value)'
         },
             {
@@ -37,7 +37,7 @@ angular.module('optionsApp', [])
                 class: 'form-control',
                 label: 'Parking lot address',
                 labelClass: 'sr-only',
-                description: 'The address of the parking lot',
+                description: 'The address of the parking lot. It will be included as the starting point in directions.',
                 disabled: '!(options[2].value && options[1].value)'
         },
             {
@@ -45,7 +45,7 @@ angular.module('optionsApp', [])
                 type: 'checkbox',
                 value: false,
                 label: 'Extra stops',
-                description: 'Add extra stops to the directions. Up to six extrastops can be added.',
+                description: 'Include extra stops between the origin and the destination in directions. Up to six extrastops can be added. Each extra stop addrees has to be enclosed in brackets (i.e. [Times Square, Manhattan, New York, NY 10036]).',
                 disabled: '!(options[1].value)'
         },
             {
@@ -53,7 +53,7 @@ angular.module('optionsApp', [])
                 type: 'checkbox',
                 value: false,
                 label: 'Search in email',
-                description: 'Search for coversations in email.',
+                description: 'Add link to search for coversations in email on Charges page. Currently only Gmail is supported.',
                 disabled: false
         }
     ];
