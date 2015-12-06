@@ -1,5 +1,7 @@
 'use strict';
 
+/* globals angular */
+
 // Angular
 angular.module('optionsApp', [])
     .controller('OptionsController', ['$scope', function ($scope) {
@@ -60,7 +62,7 @@ angular.module('optionsApp', [])
         
         $scope.saveOptions = function() {
             saveOptions($scope.options);
-        }
+        };
 
 
         /************************
@@ -74,7 +76,7 @@ angular.module('optionsApp', [])
             for (var i = 0; i < opt.length; i++) {
                 //create options object for saving and restorig options    
                 options[opt[i].name] = opt[i].value;
-            };
+            }
             return options;
         }
 
@@ -82,11 +84,11 @@ angular.module('optionsApp', [])
         function setOptionValues(options, modelOptions) {
             for (var option in options) {
                 modelOptions.filter(function (modelOption) {
-                    if (modelOption.name == option) {
+                    if (modelOption.name === option) {
                         modelOption.value = options[option];
-                    };
+                    }
                 });
-            };
+            }
         }
 
         function saveOptions(modelOptions) {
@@ -95,7 +97,7 @@ angular.module('optionsApp', [])
             chrome.storage.sync.set(options, function () {
                 console.log('saveOptions() options: ', options);
 
-                updateStatus('Options saved')
+                updateStatus('Options saved');
             });
         }
 
@@ -120,8 +122,3 @@ angular.module('optionsApp', [])
 
         angular.element(document).ready(restoreOptions($scope.options));
   }]);
-//document.addEventListener('DOMContentLoaded', restore_options);
-
-
-// restoreOptions();
-//angular.element(document).ready($scope.restoreOptions);
