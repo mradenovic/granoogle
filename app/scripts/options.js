@@ -59,11 +59,10 @@ angular.module('optionsApp', [])
                 disabled: false
         }
     ];
-        
+
         $scope.saveOptions = function() {
             saveOptions($scope.options);
         };
-
 
         /************************
          *  ALL FUNCTIONS HERE
@@ -82,12 +81,14 @@ angular.module('optionsApp', [])
 
         // Update option values
         function setOptionValues(options, modelOptions) {
+            function updateValue(modelOption) {
+                if (modelOption.name === option) {
+                    modelOption.value = options[option];
+                }
+            }
+
             for (var option in options) {
-                modelOptions.filter(function (modelOption) {
-                    if (modelOption.name === option) {
-                        modelOption.value = options[option];
-                    }
-                });
+                modelOptions.filter(updateValue);
             }
         }
 
