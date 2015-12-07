@@ -1,6 +1,6 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
   "homepage_url": "https://github.com/mradenovic/granoogle",
@@ -32,7 +32,9 @@
         "https://*/*mpest~entrywc*",
         "http://*/*mpest~entrywc*"
       ],
-      "css": ["styles/maps.css"],
+      "css": [
+        "styles/maps.css"
+      ],
       "js": [
         "bower_components/jquery/dist/jquery.min.js",
         "scripts/entry_form.js"
@@ -43,7 +45,9 @@
         "https://*/*mpcharge~chargeswc*",
         "http://*/*mpcharge~chargeswc*"
       ],
-      "css": ["styles/gmail.css"],
+      "css": [
+        "styles/gmail.css"
+      ],
       "js": [
         "bower_components/jquery/dist/jquery.min.js",
         "scripts/charges.js"
@@ -54,10 +58,21 @@
         "https://*/*mpest~extstopwc*",
         "http://*/*mpest~extstopwc*"
       ],
-      "css": ["styles/maps.css"],
+      "css": [
+        "styles/maps.css"
+      ],
       "js": [
         "bower_components/jquery/dist/jquery.min.js",
         "scripts/extra_stop.js"
+      ]
+    },
+    {
+      "matches": [
+        "file://null"
+      ],
+      "js": [
+        "scripts/entry_form_maps.js",
+        "scripts/extra_stop_maps.js"
       ]
     }
   ],
