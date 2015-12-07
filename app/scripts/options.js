@@ -6,33 +6,31 @@
 angular.module('optionsApp', [])
   .controller('OptionsController', ['$scope', function ($scope) {
 
-    $scope.options = [
-      {
-        name: 'mapsAutocomplete',
+    $scope.options = {
+      mapsAutocomplete: {
+        show: true,
         type: 'checkbox',
-        value: true,
+        value: false,
         label: 'Address autocomplete',
         description: 'Add autocomplete to address fields. It will also add a text field in the Extra Stop page.',
         disabled: false
         },
-      {
-        name: 'mapsDirections',
+      mapsDirections: {
+        show: true,
         type: 'checkbox',
         value: true,
         label: 'Directions',
         description: 'Add a Directions button in the Charges page. Directions can include a parking lot address and extra stops.',
         disabled: false
         },
-      {
-        name: 'mapsParkingLot',
+      mapsParkingLot: {
         type: 'checkbox',
         value: true,
         label: 'Parking lot',
         description: 'Include the parking lot address as a starting point in directions.',
-        disabled: '!(options[1].value)'
+        disabled: '!options.mapsDirections.value'
         },
-      {
-        name: 'mapsParkingLotAddress',
+      mapsParkingLotAddress: {
         type: 'text',
         value: '',
         placeholder: 'Enter the parking lot address',
@@ -40,25 +38,24 @@ angular.module('optionsApp', [])
         label: 'Parking lot address',
         labelClass: 'sr-only',
         description: 'The address of the parking lot. It will be included as the starting point in directions.',
-        disabled: '!(options[2].value && options[1].value)'
+        disabled: '!(options.mapsDirections.value && options.mapsParkingLot.value)'
         },
-      {
-        name: 'mapsExtraStops',
+      mapsExtraStops:{
         type: 'checkbox',
         value: false,
         label: 'Extra stops',
         description: 'Include extra stops between the origin and the destination in directions. Up to six extrastops can be added. Each extra stop addrees has to be enclosed in brackets (i.e. [Times Square, Manhattan, New York, NY 10036]).',
-        disabled: '!(options[1].value)'
+        disabled: '!options.mapsDirections.value'
         },
-      {
-        name: 'emailSearch',
+      emailSearch: {
+        show: true,
         type: 'checkbox',
         value: false,
         label: 'Search in email',
         description: 'Add link to search for coversations in email on Charges page. Currently only Gmail is supported.',
         disabled: false
         }
-    ];
+    };
 
     $scope.saveOptions = function () {
       saveOptions($scope.options);
@@ -70,25 +67,18 @@ angular.module('optionsApp', [])
 
     // Get option list
     function getOptions(modelOptions) {
-      var opt = modelOptions;
       var options = {};
-      for (var i = 0; i < opt.length; i++) {
+      for (var option in modelOptions) {
         //create options object for saving and restorig options    
-        options[opt[i].name] = opt[i].value;
+        options[option] = modelOptions[option].value;
       }
       return options;
     }
 
     // Update option values
     function setOptionValues(options, modelOptions) {
-      function updateValue(modelOption) {
-        if (modelOption.name === option) {
-          modelOption.value = options[option];
-        }
-      }
-
       for (var option in options) {
-        modelOptions.filter(updateValue);
+        modelOptions[option].value = options[option];
       }
     }
 
@@ -96,8 +86,6 @@ angular.module('optionsApp', [])
       var options = getOptions(modelOptions);
 
       chrome.storage.sync.set(options, function () {
-        console.log('saveOptions() options: ', options);
-
         updateStatus('Options saved');
       });
     }
@@ -120,6 +108,7 @@ angular.module('optionsApp', [])
         status.textContent = '';
       }, 750);
     }
+    console.log('test');
 
     angular.element(document).ready(restoreOptions($scope.options));
   }]);
