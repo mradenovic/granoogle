@@ -44,7 +44,7 @@ angular.module('optionsApp', [])
         type: 'checkbox',
         value: false,
         label: 'Extra stops',
-        description: 'Include extra stops between the origin and the destination in directions. Up to six extrastops can be added. Each extra stop addrees has to be enclosed in brackets (i.e. [Times Square, Manhattan, New York, NY 10036]).',
+        description: 'Include extra stops between the origin and the destination in directions. Up to six extrastops can be added. Each extra stop address has to be enclosed in brackets (i.e. [Times Square, Manhattan, New York, NY 10036]).',
         disabled: '!options.mapsDirections.value'
         },
       emailSearch: {
