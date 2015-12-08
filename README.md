@@ -1,16 +1,46 @@
 # Granottifier
-Google Chrome extension that prettifies Granot Moving Software by integrating (some) Google services
+Granottifier is a collection of content scripts that adds following functionality
+to Granot Moving Software:
 
-Granottifier is a collection of content scripts that adds following functionality to Granot Moving Software:
+  * Address autocomplete in address fields
+  * New Directions link with improved functionality
+  * Parking lot as a starting point in directions
+  * Extra stops between the origin and the destination in directions
+  * One click search for conversations in email
 
-  * [Address autocomplete - _Entry Form_ page](#entry_forme_address_autocomplete)
-  * [Search communication history in Gmail - *Charges* page](#search)
-  * [Include parking lot address in directions - *Charges* page](#parkinglot)
-  * [Address autocomplete - *Extra Stop* page](#extra_stop_autocomplet)
-  * [Include extra stops in directons - *Charges* page](#extra_stop)
+## Install
 
-### Address autocomplete - *Entry Form* page<a name="entry_forme_address_autocomplete"></a>
-### Search communication history in Gmail - *Charges* page page<a name="search"></a>
-### Include parking lot address in directions - *Charges* pagepage <a name="parkinglot"></a>
-### Address autocomplete - *Extra Stop* page page <a name="extra_stop_autocomplet"></a>
-### Include extra stops in directons - *Charges* page page <a name="extra_stop"></a>
+Install extension from [chrome web store](https://chrome.google.com/webstore/detail/granottifier/lokjoaajcjefaoldfpdnihnpagdbonle?utm_source=chrome-ntp-icon).
+
+## Options
+
+### Address autocomplete
+
+Add autocomplete to address fields. It will also add a text field in the Extra
+Stop page. If selected, the address will be suggested ad you type. Click on the
+suggested address to populate relevant fields.
+
+### Directions
+
+Add a Directions button in the Charges page. Directions can include a parking lot 
+address and extra stops. Click on the Directions link to get see directions based
+on available data and selected options.
+
+### Parking lot
+
+Include the parking lot address as a starting point in directions.
+
+### Parking lot address
+
+The address of the parking lot. It will be included as the starting point in 
+directions.
+
+### Extra stops
+
+Include extra stops between the origin and the destination in directions.Up to 
+six extrastops can be added. Each extra stop address has to be enclosed in 
+brackets (i.e. [Times Square, Manhattan, New York, NY 10036] ).
+
+### Search in email
+
+Add link to search for coversations in email on Charges page. Currently only Gmail is supported.
