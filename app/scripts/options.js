@@ -8,15 +8,13 @@ angular.module('optionsApp', [])
 
     $scope.options = {
       mapsAutocomplete: {
-        show: true,
         type: 'checkbox',
-        value: false,
+        value: true,
         label: 'Address autocomplete',
         description: 'Add autocomplete to address fields. It will also add a text field in the Extra Stop page.',
         disabled: false
         },
       mapsDirections: {
-        show: true,
         type: 'checkbox',
         value: true,
         label: 'Directions',
@@ -32,7 +30,7 @@ angular.module('optionsApp', [])
         },
       mapsParkingLotAddress: {
         type: 'text',
-        value: '',
+        value: 'E 133rd St and Wiloow Ave, The Bronx',
         placeholder: 'Enter the parking lot address',
         class: 'form-control',
         label: 'Parking lot address',
@@ -42,15 +40,14 @@ angular.module('optionsApp', [])
         },
       mapsExtraStops:{
         type: 'checkbox',
-        value: false,
+        value: true,
         label: 'Extra stops',
         description: 'Include extra stops between the origin and the destination in directions. Up to six extrastops can be added. Each extra stop address has to be enclosed in brackets (i.e. [Times Square, Manhattan, New York, NY 10036]).',
         disabled: '!options.mapsDirections.value'
         },
       emailSearch: {
-        show: true,
         type: 'checkbox',
-        value: false,
+        value: true,
         label: 'Search in email',
         description: 'Add link to search for coversations in email on Charges page. Currently only Gmail is supported.',
         disabled: false
