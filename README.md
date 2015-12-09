@@ -43,4 +43,5 @@ brackets (i.e. [Times Square, Manhattan, New York, NY 10036] ).
 
 ### Search in email
 
-Add link to search for coversations in email on Charges page. Currently only Gmail is supported.
+Add link to search for coversations in email on Charges page. Currently only 
+Gmail is supported.
