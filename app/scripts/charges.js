@@ -1,3 +1,6 @@
+/* jshint latedef: false */
+/* globals $ */
+
 // Do not use markers in address field
 // TODO move useMarker to options window and remove hardcoded one
 var useMarker = false;
@@ -16,7 +19,7 @@ function addGmailSearch() {
   var gmailAnchor = document.createElement('a');
   gmailAnchor.innerHTML = ' <i class="material-icons md-12">search</i> in Gmail';
   gmailAnchor.href = 'https://mail.google.com/mail/u/0/#search/' + email;
-  gmailAnchor.target = '_search_in_gmail'
+  gmailAnchor.target = '_search_in_gmail';
 
   emailAnchor.appendChild(gmailAnchor);
 }
@@ -28,50 +31,50 @@ function addGmailSearch() {
 function addDirections(options) {
   $('[value="Extra Stop/Notes"]')
     .parent().after($('<td>')
-      .attr('width','10%')
-      .attr('align','center')
+      .attr('width', '10%')
+      .attr('align', 'center')
       .append($('<a>')
-        .attr('href','#')
-        .click(function() {
-          getDirections(options)
+        .attr('href', '#')
+        .click(function () {
+          getDirections(options);
         })
         .append($('<i>')
           .text('directions')
           .addClass('material-icons md-18')
-      )
+        )
       )
     );
 }
 
 function getDirectionsLink(options) {
   var mapsLink = 'https://google.com/maps/dir/';
-  var orgin, destination;
+  var origin, destination;
 
   // add parkinglot address
-  if (options.mapsParkingLotAddress != '' && options.mapsParkingLot) {
+  if (options.mapsParkingLotAddress !== '' && options.mapsParkingLot) {
     mapsLink += parkinglotAddress + '/';
   }
 
   // Add origin
   if (useMarker) {
-    origin = $('.fromto:contains([o])').text().replace(/\[.\] /,'')
+    origin = $('.fromto:contains([o])').text().replace(/\[.\] /, '');
   } else {
     origin = $('td:not([height])[width="100%"][ colspan="3"][class!="FROMTO"]').parent().next().children()[0].textContent;
-    if ( !origin.match(/^\d/) ) {
+    if (!origin.match(/^\d/)) {
       origin = '';
     }
   }
-  origin += ', '
-         + $('.fromto[width="63%"]').text() + ' '
-         + $('.fromto[width="16%"]').text() + ' '
-         + $('.fromto[width="21%"]').text() + '/';
-  if (origin != '') {
+  origin += ', ' +
+    $('.fromto[width="63%"]').text() + ' ' +
+    $('.fromto[width="16%"]').text() + ' ' +
+    $('.fromto[width="21%"]').text() + '/';
+  if (origin !== '') {
     mapsLink += origin;
   }
 
   //Add exra stops
   if (options.mapsExtraStops && extraStops) {
-    for (i in extraStops) {
+    for (var i in extraStops) {
       var bracket = /[\[|\]]/g;
       mapsLink += extraStops[i].replace(bracket, '') + '/';
     }
@@ -79,18 +82,18 @@ function getDirectionsLink(options) {
 
   // Add destination
   if (useMarker) {
-    destination = $('.fromto:contains([d])').text().replace(/\[.\] /,'')
+    destination = $('.fromto:contains([d])').text().replace(/\[.\] /, '');
   } else {
     destination = $('td:not([height])[width="100%"][ colspan="3"][class!="FROMTO"]').parent().next().children()[1].textContent;
-    if ( !destination.match(/^\d/) ) {
+    if (!destination.match(/^\d/)) {
       destination = '';
     }
   }
-  destination += ', '
-              + $('.fromto[width="60%"]').text() + ' '
-              + $('.fromto[width="15%"]').text() + ' '
-              + $('.fromto[width="25%"]').text() + '/';
-  if (destination != '') {
+  destination += ', ' +
+    $('.fromto[width="60%"]').text() + ' ' +
+    $('.fromto[width="15%"]').text() + ' ' +
+    $('.fromto[width="25%"]').text() + '/';
+  if (destination !== '') {
     mapsLink += destination;
   }
 
@@ -107,19 +110,20 @@ function getDirections(options) {
   }
   if (options.mapsExtraStops && hasExtraStop) {
     var extraStopURL = document.URL.replace('mpcharge~chargeswc', 'mpest~extstopwc');
-    extraStopWindow = window.open(extraStopURL,'_directions'); //, 'toolbar=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no,width=550,height=550');
-    var int = setInterval(wait, 100);
+    var extraStopWindow = window.open(extraStopURL, '_directions'); //, 'toolbar=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no,width=550,height=550');
+
     function wait() {
       if (extraStopWindow.getExtraStops) {
         clearInterval(int);
         extraStops = extraStopWindow.getExtraStops();
         extraStopWindow.close();
         getDirectionsLink(options);
-      };
+      }
     }
+    var int = setInterval(wait, 100);
   } else {
-    getDirectionsLink(options);  
-  };
+    getDirectionsLink(options);
+  }
 }
 
 /**
@@ -138,15 +142,15 @@ function appendStyle() {
  *
  */
 function init() {
-  chrome.storage.sync.get(null , function(items) {
+  chrome.storage.sync.get(null, function (items) {
     if (items.emailSearch) {
       appendStyle();
       addGmailSearch();
-    };
+    }
     if (items.mapsDirections) {
-      parkinglotAddress = items.mapsParkingLotAddress
+      parkinglotAddress = items.mapsParkingLotAddress;
       addDirections(items);
-    };  
+    }
   });
 }
 

@@ -1,3 +1,7 @@
+/* jshint camelcase: false, latedef: nofunc*/
+/* exported initAutocomplete */
+/* globals google */
+
 // Do not use markers in address field
 var useMarker = false;
 
@@ -17,23 +21,21 @@ var componentForm = {
  *
  */
 var inputFields = {
-    o_name: 'SADD1',
-    o_locality: 'SCITY',
-    o_postal_code: 'SZIP',
-    o_administrative_area_level_1: 'SSTATE',
-    d_name: 'RADD1',
-    d_locality: 'RCITY',
-    d_postal_code: 'RZIP',
-    d_administrative_area_level_1: 'RSTATE'
-}
-
-setIDs();
+  o_name: 'SADD1',
+  o_locality: 'SCITY',
+  o_postal_code: 'SZIP',
+  o_administrative_area_level_1: 'SSTATE',
+  d_name: 'RADD1',
+  d_locality: 'RCITY',
+  d_postal_code: 'RZIP',
+  d_administrative_area_level_1: 'RSTATE'
+};
 
 /**
  * Sets IDs for input fields that are used for autocomplete.
  *
  */
- function setIDs() {
+function setIDs() {
   for (var field in inputFields) {
     var name = inputFields[field];
     document.querySelector('[name="' + name + '"]').id = field;
@@ -48,21 +50,28 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   originAutocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.querySelector('[name="SADD1"]')),
-      {types: ['address']});
+    /** @type {!HTMLInputElement} */
+    (document.querySelector('[name="SADD1"]')), {
+      types: ['address']
+    });
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   originAutocomplete.addListener('place_changed', (function (inputPrefix) {
-    return function(){ updateAddressFields(inputPrefix) }
-    })('o_'));
+    return function () {
+      updateAddressFields(inputPrefix);
+    };
+  })('o_'));
 
   destAutocomplete = new google.maps.places.Autocomplete(
-      (document.querySelector('[name="RADD1"]')),
-      {types: ['address']});
+    (document.querySelector('[name="RADD1"]')), {
+      types: ['address']
+    });
   destAutocomplete.addListener('place_changed', (function (inputPrefix) {
-    return function(){ updateAddressFields(inputPrefix) }
-    })('d_'));
+    return function () {
+      updateAddressFields(inputPrefix);
+    };
+  })('d_'));
 }
 
 /**
@@ -70,13 +79,17 @@ function initAutocomplete() {
  *
  * @param {String} inputPrefix - prefix of input fields to be updated ('o_' for origin, 'd_' for destination)
  */
- function updateAddressFields(inputPrefix) {
+function updateAddressFields(inputPrefix) {
   // Get the place details from the autocomplete object.
   var prefix = inputPrefix;
   var name = '';
   var place;
-  if (prefix == 'o_') { place = originAutocomplete.getPlace() };
-  if (prefix == 'd_') { place = destAutocomplete.getPlace() };
+  if (prefix === 'o_') {
+    place = originAutocomplete.getPlace();
+  }
+  if (prefix === 'd_') {
+    place = destAutocomplete.getPlace();
+  }
   if (useMarker) {
     name += '[' + prefix[0] + '] ';
   }
@@ -93,3 +106,5 @@ function initAutocomplete() {
     }
   }
 }
+
+setIDs();
