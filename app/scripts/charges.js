@@ -143,8 +143,10 @@ function appendStyle() {
  */
 function init() {
   chrome.storage.sync.get(null, function (items) {
-    if (items.emailSearch) {
+    if (items.emailSearch || items.mapsDirections) {
       appendStyle();
+    }
+    if (items.emailSearch) {
       addGmailSearch();
     }
     if (items.mapsDirections) {
