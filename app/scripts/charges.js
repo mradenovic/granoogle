@@ -46,16 +46,8 @@ function addDirections(options) {
     );
 }
 
-function getDirectionsLink(options) {
-  var mapsLink = 'https://google.com/maps/dir/';
-  var origin, destination;
-
-  // add parkinglot address
-  if (options.mapsParkingLotAddress !== '' && options.mapsParkingLot) {
-    mapsLink += parkinglotAddress + '/';
-  }
-
-  // Add origin
+function getOrigin() {
+  var origin;
   if (useMarker) {
     origin = $('.fromto:contains([o])').text().replace(/\[.\] /, '');
   } else {
@@ -68,19 +60,11 @@ function getDirectionsLink(options) {
     $('.fromto[width="63%"]').text() + ' ' +
     $('.fromto[width="16%"]').text() + ' ' +
     $('.fromto[width="21%"]').text() + '/';
-  if (origin !== '') {
-    mapsLink += origin;
-  }
+  return origin;
+}
 
-  //Add exra stops
-  if (options.mapsExtraStops && extraStops) {
-    for (var i in extraStops) {
-      var bracket = /[\[|\]]/g;
-      mapsLink += extraStops[i].replace(bracket, '') + '/';
-    }
-  }
-
-  // Add destination
+function getDestination() {
+  var destination;
   if (useMarker) {
     destination = $('.fromto:contains([d])').text().replace(/\[.\] /, '');
   } else {
@@ -93,11 +77,27 @@ function getDirectionsLink(options) {
     $('.fromto[width="60%"]').text() + ' ' +
     $('.fromto[width="15%"]').text() + ' ' +
     $('.fromto[width="25%"]').text() + '/';
-  if (destination !== '') {
-    mapsLink += destination;
+  return destination;  
+}
+
+function getDirectionsLink(options) {
+  var mapsLink = 'https://google.com/maps/dir/';
+
+  if (options.mapsParkingLot && options.mapsParkingLotAddress !== '') {
+    mapsLink += parkinglotAddress + '/';
   }
 
-  // Open link
+  mapsLink += getOrigin();
+
+  if (options.mapsExtraStops && extraStops) {
+    for (var i in extraStops) {
+      var bracket = /[\[|\]]/g;
+      mapsLink += extraStops[i].replace(bracket, '') + '/';
+    }
+  }
+
+  mapsLink += getDestination();
+
   window.open(mapsLink, '_directions');
 }
 
