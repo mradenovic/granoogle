@@ -55,10 +55,10 @@ angular.module('optionsApp')
   
       this.getOptions = function() {
         return options;
-      }
+      };
       
       this.getOption = function(optionName) {
         return options[optionName];
-      }
+      };
       
     });
