@@ -46,6 +46,7 @@ angular.module('optionsApp')
 
       chrome.storage.sync.get(options, function (storedOptions) {
         setOptionValues(storedOptions, modelOptions);
+        saveOptions(modelOptions);
         $scope.$apply();
 
         updateStatus('Options retrived');
