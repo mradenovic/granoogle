@@ -17,9 +17,6 @@
     ]
   },
   "permissions": [
-    "tabs",
-    "http://*/*",
-    "https://*/*",
     "storage"
   ],
   "options_ui": {
