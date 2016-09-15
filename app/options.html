@@ -4,6 +4,8 @@
 <head>
   <!-- build:css styles/options-vendor.css -->
   <!-- bower:css -->
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css styles/main.css -->
@@ -16,7 +18,7 @@
     <h1>Granottifier Options</h1>
     <h4>Select options that you want to use</h4>
     <form class="form-horizontal" ng-submit="saveOptions()" ng-controller="OptionsController">
-      
+
       <div class="form-group" ng-repeat="(key, option) in options">
         <div class="col-xs-12 col-sm-4">
           <input type="{{option.type}}" ng-disabled="{{option.disabled}}" class="{{option.class}}" ng-model="option.value" placeholder="{{option.placeholder}}" id="{{key}}">
@@ -26,7 +28,7 @@
           {{option.description}}
         </div>
       </div>
-      
+
       <div class="form-group">
         <div class=" form-inlinecol-xs-12 col-sm-4">
           <input type="submit" class="btn-info" value="Save" id="submit">
