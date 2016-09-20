@@ -47,7 +47,7 @@
       ],
       "js": [
         "bower_components/jquery/dist/jquery.min.js",
-        "scripts/charges.js"
+        "scripts/charges/charges.js"
       ]
     },
     {

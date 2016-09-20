@@ -77,7 +77,7 @@ function getDestination() {
     $('.fromto[width="60%"]').text() + ' ' +
     $('.fromto[width="15%"]').text() + ' ' +
     $('.fromto[width="25%"]').text() + '/';
-  return destination;  
+  return destination;
 }
 
 function getDirectionsLink(options) {
