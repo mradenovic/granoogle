@@ -60,12 +60,12 @@
       ],
       "js": [
         "bower_components/jquery/dist/jquery.min.js",
-        "scripts/extra_stop.js"
+        "scripts/extra_stop/extra_stop.js"
       ]
     }
   ],
   "web_accessible_resources": [
     "scripts/entry_form/entry_form_maps.js",
-    "scripts/extra_stop_maps.js"
+    "scripts/extra_stop/extra_stop_maps.js"
   ]
 }
